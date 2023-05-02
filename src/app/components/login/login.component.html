@@ -1,4 +1,6 @@
 <app-title-logout></app-title-logout>
-<p>login works!</p>
-<p>Esta é a página de login!</p>
-
+<form (ngSubmit)="login()" #loginForm="ngForm">
+  <input [(ngModel)]="username" name="email" placeholder="Email" required email />
+  <input [(ngModel)]="password" name="password" placeholder="Senha" type="password" required />
+  <button type="submit" [disabled]="!loginForm.valid">Logar</button>
+</form>
