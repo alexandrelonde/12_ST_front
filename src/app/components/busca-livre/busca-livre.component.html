@@ -3,7 +3,7 @@
   <ng-container *ngFor="let restaurante of restaurantes"  >
     <div style="display:flex;flex-direction: column;gap:1rem;border:19px;margin-bottom: 10px;">
       <span>
-        {{restaurante.nome}}
+       <h4>{{restaurante.nome}}</h4>
       </span>
 
       <span>
@@ -15,7 +15,7 @@
       </span>
 
       <button (click)="irPraDetalhes(restaurante.id)">
-        IR PRA DETALHES
+        DETALHES DO RESTAURANTE
       </button>
     </div>
 

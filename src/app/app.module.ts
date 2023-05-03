@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { BuscaLivreComponent } from './components/busca-livre/busca-livre.component';
 import { DetalhesRestauranteComponent } from './components/detalhes-restaurante/detalhes-restaurante.component';
 import { TitleLogoutComponent } from './components/title-logout/title-logout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { TitleLogoutComponent } from './components/title-logout/title-logout.com
   ],
   imports: [
     BrowserModule, FormsModule,
-    AppRoutingModule, HttpClientModule,
+    AppRoutingModule, HttpClientModule, ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
