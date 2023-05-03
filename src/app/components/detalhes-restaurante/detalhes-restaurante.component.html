@@ -4,7 +4,7 @@
 <ng-container *ngIf="(restaurante$|async) as restaurante">
   <div style="display:flex;flex-direction: column;gap:1rem; border:19px;margin-bottom: 8px;">
     <span>
-      <h3>{{restaurante.nome}}</h3>
+      <h2>{{restaurante.nome}}</h2>
     </span>
 
     <span>
@@ -16,6 +16,8 @@
     </span>
   </div>
 
+  <h3>Pratos</h3>
+
   <ng-container *ngIf="restaurante.pratos && restaurante.pratos.length">
     <div *ngFor="let prato of restaurante.pratos">
       <h4>{{prato.nome}}</h4>
@@ -23,5 +25,7 @@
       <p>Preço: {{prato.preco}}</p>
     </div>
   </ng-container>
+
+  <p>COLOCAR AQUI O BOTÃO DE VOLTAR</p>
 
 </ng-container>
