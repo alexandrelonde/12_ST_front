@@ -1,42 +1,49 @@
-
 <div class="page-search">
-  <div class="content">
-    <form [formGroup]="searchForm">
+  <div class="content full-width">
+    <form [formGroup]="searchForm" class="form">
       <mat-form-field appearance="outline">
-        <mat-label>Outline form field</mat-label>
-        <input matInput placeholder="Placeholder" formControlName="buscar">
+        <mat-label>O que você procura?</mat-label>
+        <input matInput formControlName="buscar" />
       </mat-form-field>
-      <button>Buscar</button>
+
+      <div class="search">
+        <button mat-raised-button color="primary" class="button-search">
+          Buscar
+        </button>
+        <!--(click)="buscar() depois do class"-->
+      </div>
     </form>
+
+    <!--  -->
+
+    <ng-container *ngIf="restaurantes$ | async; let restaurantes">
+      <mat-card
+        class="card"
+        *ngFor="let restaurante of restaurantes"
+      >
+        <mat-card-content>
+          <span>
+            <h3><strong>{{ restaurante.nome }}</strong></h3>
+          </span>
+
+          <div>
+            <span>
+              <strong>Endereço:</strong> {{ restaurante.endereco }}
+            </span>
+          </div>
+
+          <div>
+            <span>
+              <strong>Telefone:</strong> {{ restaurante.telefone }}
+            </span>
+          </div>
+
+
+          <button (click)="irPraDetalhes(restaurante.id)">
+            DETALHES DO RESTAURANTE
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
   </div>
 </div>
-
-
-
-
-
-<!-- A PARTIR DAQUI MOSTRA OS RESTAURANTES  -->
-
-<ng-container *ngIf="(restaurantes$|async) as restaurantes">
-  <ng-container *ngFor="let restaurante of restaurantes"  >
-    <div style="display:flex;flex-direction: column;gap:1rem;border:19px;margin-bottom: 10px;">
-      <span>
-       <h4>{{restaurante.nome}}</h4>
-      </span>
-
-      <span>
-        {{restaurante.endereco}}
-      </span>
-
-      <span>
-        {{restaurante.telefone}}
-      </span>
-
-      <button (click)="irPraDetalhes(restaurante.id)">
-        DETALHES DO RESTAURANTE
-      </button>
-    </div>
-  </ng-container>
-</ng-container>
-
-

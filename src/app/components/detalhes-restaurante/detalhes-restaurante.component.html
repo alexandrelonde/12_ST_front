@@ -1,17 +1,9 @@
 
 
-<ng-container *ngIf="(restaurante$|async) as restaurante">
+<ng-container *ngIf="(restaurante$|async); let restaurante">
   <div style="display:flex;flex-direction: column;gap:1rem; border:19px;margin-bottom: 8px;">
     <span>
       <h2>{{restaurante.nome}}</h2>
-    </span>
-
-    <span>
-      Telefone: {{restaurante.telefone}}
-    </span>
-
-    <span>
-      Endereço: {{restaurante.endereco}}
     </span>
   </div>
 
