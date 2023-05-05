@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup; // declaração da propriedade loginForm
-
+  hide = true;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,

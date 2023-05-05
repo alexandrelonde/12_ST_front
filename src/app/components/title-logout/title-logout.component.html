@@ -1,2 +1,11 @@
-<h1>Sabor Tech</h1>
-<p>Sua refeição a um click!</p>
+
+<mat-toolbar class="toolbar">
+
+  <mat-icon svgIcon="iconLogo" alt="Logo" class="custom-icon"></mat-icon>
+
+  <div class="info-user" *ngIf="isLogged()">
+    <div class="user-data">
+      <span>Sabor Tech</span>
+    </div>
+  </div>
+</mat-toolbar>

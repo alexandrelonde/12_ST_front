@@ -1,5 +1,4 @@
 
-<app-title-logout></app-title-logout>
 
 <ng-container *ngIf="(restaurante$|async) as restaurante">
   <div style="display:flex;flex-direction: column;gap:1rem; border:19px;margin-bottom: 8px;">
@@ -22,7 +21,7 @@
     <div *ngFor="let prato of restaurante.pratos">
       <h4>{{prato.nome}}</h4>
       <p>Descrição: {{prato.descricao}}</p>
-      <p>Preço: {{prato.preco}}</p>
+      <p>Preço: R$ {{prato.preco}}</p>
     </div>
   </ng-container>
 
