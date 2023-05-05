@@ -1,0 +1,29 @@
+
+
+.mat-icon-button {
+  margin-right: 50px;
+}
+
+.custom-icon {
+  font-size: 40px;
+  width: 160px;
+  height: 40px;
+}
+
+.user-info
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.user-data{
+  display: flex;
+  flex-direction: row;
+}
+
+.toolbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: crimson;
+}

@@ -10,20 +10,50 @@ import { BuscaLivreComponent } from './components/busca-livre/busca-livre.compon
 import { DetalhesRestauranteComponent } from './components/detalhes-restaurante/detalhes-restaurante.component';
 import { TitleLogoutComponent } from './components/title-logout/title-logout.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     BuscaLivreComponent,
     DetalhesRestauranteComponent,
-    TitleLogoutComponent
+    TitleLogoutComponent,
   ],
   imports: [
-    BrowserModule, FormsModule,
-    AppRoutingModule, HttpClientModule, ReactiveFormsModule,
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+  ) {
+    this.matIconRegistry.addSvgIcon(
+      'iconLogo',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        'assets/images/iconLogo.svg'
+      )
+    );
+  }
+}

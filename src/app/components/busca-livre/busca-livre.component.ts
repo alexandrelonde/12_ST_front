@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Restaurante } from 'src/app/Interfaces/Restaurante';
@@ -13,7 +14,12 @@ export class BuscaLivreComponent implements OnInit {
 
   restaurantes$: Observable<Restaurante[]> = new Observable<Restaurante[]>();
 
-  constructor(private restauranteService: RestaurantesService,private router:Router) {}
+
+  searchForm=this.fb.group({
+    buscar:[]
+  })
+
+  constructor(private fb:FormBuilder,private restauranteService: RestaurantesService,private router:Router) {}
 
   ngOnInit(): void {
     this.restaurantes$=this.restauranteService.getRestaurantes();
