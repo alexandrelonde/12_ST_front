@@ -1,22 +1,51 @@
+<div class="page-details">
+  <div class="content full-width">
+    <ng-container *ngIf="restaurante$ | async; let restaurante">
+      <mat-card class="card">
+        <mat-card-content>
+          <span>
+            <h1><strong>{{ restaurante.nome }}</strong></h1>
+          </span>
 
+          <div class="pratos">
+            <h2>Pratos</h2>
+          </div>
 
-<ng-container *ngIf="(restaurante$|async); let restaurante">
-  <div style="display:flex;flex-direction: column;gap:1rem; border:19px;margin-bottom: 8px;">
-    <span>
-      <h2>{{restaurante.nome}}</h2>
-    </span>
-  </div>
+          <ng-container *ngIf="restaurante.pratos && restaurante.pratos.length">
+            <mat-card
+              class="mini-card"
+              *ngFor="let prato of restaurante.pratos"
+            >
+              <mat-card-content>
+                <span>
+                  <h3>
+                    <strong>{{ prato.nome }}</strong>
+                  </h3>
+                </span>
 
-  <h3>Pratos</h3>
+                <div>
+                  <span>
+                    {{ prato.descricao }}
+                  </span>
+                </div>
 
-  <ng-container *ngIf="restaurante.pratos && restaurante.pratos.length">
-    <div *ngFor="let prato of restaurante.pratos">
-      <h4>{{prato.nome}}</h4>
-      <p>Descrição: {{prato.descricao}}</p>
-      <p>Preço: R$ {{prato.preco}}</p>
+                <div>
+                  <span>
+                    Preço: <strong>R$ {{ prato.preco }}</strong>
+                  </span>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </ng-container>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+
+    <div class="back">
+      <button mat-raised-button color="primary" class="button-back">
+        Voltar
+      </button>
+      <!--(click)="voltar() depois do class"-->
     </div>
-  </ng-container>
-
-  <p>COLOCAR AQUI O BOTÃO DE VOLTAR</p>
-
-</ng-container>
+  </div>
+</div>
