@@ -2,7 +2,9 @@
   <div class="content full-width">
     <form [formGroup]="searchForm" class="form">
       <mat-form-field appearance="outline">
-        <mat-label>O que você procura?</mat-label>
+        <mat-label>
+          O que você procura (restaurante, prato ou ingrediente)?
+        </mat-label>
         <input matInput formControlName="buscar" />
       </mat-form-field>
 
@@ -17,11 +19,9 @@
     <!--  -->
 
     <ng-container *ngIf="restaurantes$ | async; let restaurantes">
-      <mat-card
-        class="card"
-        *ngFor="let restaurante of restaurantes"
-      >
+      <mat-card class="card" *ngFor="let restaurante of restaurantes">
         <mat-card-content>
+
           <span>
             <h3><strong>{{ restaurante.nome }}</strong></h3>
           </span>
@@ -38,10 +38,14 @@
             </span>
           </div>
 
+          <div class="detalhes">
+            <button
+              mat-raised-button color="basic"
+              class="button-details"
+              (click)="irPraDetalhes(restaurante.id)" >Detalhes do Restaurante
+            </button>
+          </div>
 
-          <button (click)="irPraDetalhes(restaurante.id)">
-            DETALHES DO RESTAURANTE
-          </button>
         </mat-card-content>
       </mat-card>
     </ng-container>
