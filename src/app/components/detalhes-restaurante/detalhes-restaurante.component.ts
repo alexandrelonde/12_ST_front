@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Observable } from 'rxjs';
 import { Restaurante } from 'src/app/Interfaces/Restaurante';
 import { RestaurantesService } from 'src/app/services/restaurantes.service';
@@ -10,7 +10,7 @@ import { RestaurantesService } from 'src/app/services/restaurantes.service';
   styleUrls: ['./detalhes-restaurante.component.css']
 })
 export class DetalhesRestauranteComponent implements OnInit{
-  constructor(private restauranteService: RestaurantesService, private route: ActivatedRoute) {}
+  constructor(private restauranteService: RestaurantesService, private route: ActivatedRoute,private router:Router) {}
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.restaurante$=this.restauranteService.getRestaurantesPratos(id);
@@ -18,5 +18,11 @@ export class DetalhesRestauranteComponent implements OnInit{
 
   restaurante$:Observable<Restaurante>=new Observable<Restaurante>;
 
+
+  IrpraTeladeBuscar()
+  {
+    console.log("tes");
+    this.router.navigateByUrl(`/buscar`);
+  }
 
 }
