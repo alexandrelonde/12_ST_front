@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Restaurante } from 'src/app/Interfaces/Restaurante';
@@ -16,13 +16,28 @@ export class BuscaLivreComponent implements OnInit {
 
 
   searchForm=this.fb.group({
-    buscar:[]
+    buscar:['',Validators.required]
   })
+
+  get buscar()
+  {
+    return this.searchForm.controls['buscar'];
+  }
 
   constructor(private fb:FormBuilder,private restauranteService: RestaurantesService,private router:Router) {}
 
   ngOnInit(): void {
     this.restaurantes$=this.restauranteService.getRestaurantes();
+  }
+
+
+  submitSearch()
+  {
+    if(this.searchForm.valid)
+    {
+      this.restaurantes$=this.restauranteService.getRestaurantesByTerm(this.buscar.value ?? '');
+    }
+
   }
 
 

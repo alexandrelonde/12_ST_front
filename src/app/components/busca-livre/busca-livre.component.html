@@ -9,45 +9,56 @@
       </mat-form-field>
 
       <div class="search">
-        <button mat-raised-button color="primary" class="button-search">
+        <button mat-raised-button color="primary" class="button-search" (click)="submitSearch()">
           Buscar
         </button>
-        <!--(click)="buscar() depois do class"-->
+
       </div>
     </form>
 
-    <!--  -->
 
     <ng-container *ngIf="restaurantes$ | async; let restaurantes">
-      <mat-card class="card" *ngFor="let restaurante of restaurantes">
-        <mat-card-content>
+      <ng-container *ngIf="restaurantes.length > 0 else notExitsRestaurante">
+        <mat-card class="card" *ngFor="let restaurante of restaurantes">
+          <mat-card-content>
 
           <span>
             <h3><strong>{{ restaurante.nome }}</strong></h3>
           </span>
 
-          <div>
+            <div>
             <span>
               <strong>Endereço:</strong> {{ restaurante.endereco }}
             </span>
-          </div>
+            </div>
 
-          <div>
+            <div>
             <span>
               <strong>Telefone:</strong> {{ restaurante.telefone }}
             </span>
-          </div>
+            </div>
 
-          <div class="detalhes">
-            <button
-              mat-raised-button color="basic"
-              class="button-details"
-              (click)="irPraDetalhes(restaurante.id)" >Detalhes do Restaurante
-            </button>
-          </div>
+            <div class="detalhes">
+              <button
+                mat-raised-button color="basic"
+                class="button-details"
+                (click)="irPraDetalhes(restaurante.id)" >Detalhes do Restaurante
+              </button>
+            </div>
 
-        </mat-card-content>
-      </mat-card>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+
+      <ng-template  #notExitsRestaurante>
+        <mat-card class="card">
+        <span>
+          NADA ENCONTRADO
+        </span>
+        </mat-card>
+      </ng-template>
+
+
     </ng-container>
   </div>
 </div>

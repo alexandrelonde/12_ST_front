@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -10,9 +10,14 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements  OnInit{
   loginForm: FormGroup; // declaração da propriedade loginForm
   hide = true;
+
+  ngOnInit() {
+
+  }
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,

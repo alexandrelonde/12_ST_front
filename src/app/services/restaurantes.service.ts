@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Restaurante } from '../Interfaces/Restaurante';
@@ -18,6 +18,19 @@ export class RestaurantesService {
 
   getRestaurantesPratos(id: number): Observable<Restaurante> {
     return this.http.get<Restaurante>(`${enviroment.apiUrl}/restaurante/${id}/pratos`);
+  }
+
+  getRestaurantesByTerm(term:string):Observable<Restaurante[]>{
+
+    let params=new HttpParams()
+    if(term)
+    {
+      params=params.set('term',term);
+    }
+
+    return this.http.get<Restaurante[]>(enviroment.apiUrl+'/restaurante/busca',{
+      params
+    });
   }
 
 }
