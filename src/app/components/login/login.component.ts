@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { AuthResponse } from 'src/app/Interfaces/Auth-response';
 
 
 
@@ -32,8 +33,9 @@ export class LoginComponent implements  OnInit{
   login(): void {
     const { username, password } = this.loginForm.value;
     this.authService.authenticate(username, password).subscribe(
-      (token) => {
-        this.authService.setToken(token);
+      (response: AuthResponse) => {
+        const token = response.access_token;
+        this.authService.setToken(response);
         this.router.navigate(['/buscar']);
       }
     );
