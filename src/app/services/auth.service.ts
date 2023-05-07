@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { enviroment } from '../../enviroments/environment';
+import { AuthResponse } from '../Interfaces/Auth-response';
 
 
 
@@ -13,11 +14,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  authenticate(username: string, password: string): Observable<string> {
-    return this.http.post<string>(enviroment.apiUrl+'/usuario/login', { username, password });
+  authenticate(username: string, password: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(enviroment.apiUrl+'/usuario/login', { username, password });
   }
 
-  setToken(token: string): void {
+  setToken(tokenObj: AuthResponse): void {
+    const token = tokenObj.access_token;
     localStorage.setItem('token', token);
   }
 }
