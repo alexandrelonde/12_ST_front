@@ -1,7 +1,38 @@
-<app-title-logout></app-title-logout>
-<div class="max-content">
-  <router-outlet></router-outlet>
-</div>
+<mat-sidenav-container fullscrem>
+  <mat-sidenav #sidenav>
+    <mat-nav-list (click)="sidenav.close()">
+      <div class="title-menu">
+        <span>MENU</span>
+      </div>
 
+      <a mat-list-item>
+        <mat-icon>person</mat-icon>
+        <span>Login</span>
+      </a>
+
+      <a mat-list-item routerLink='buscar'>
+        <mat-icon>search</mat-icon>
+        <span>Buscar</span>
+      </a>
+
+      <a mat-list-item routerLink=''>
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </a>
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.open()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+  </mat-toolbar>
+
+  <router-outlet></router-outlet>
+
+</mat-sidenav-container>
 
 

@@ -1,3 +1,8 @@
 .max-content{
   height:100%;
 }
+
+.title-menu {
+  text-align: center;
+  font-weight: bold;
+}
