@@ -1,0 +1,7 @@
+.page-home{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  align-items: center;
+}
