@@ -17,9 +17,9 @@
     </form>
 
 
-    <ng-container *ngIf="restaurantes$ | async; let restaurantes">
-      <ng-container *ngIf="restaurantes.length > 0 else notExitsRestaurante">
-        <mat-card class="card" *ngFor="let restaurante of restaurantes">
+    <ng-container *ngIf="vm$ | async; let vm">
+      <ng-container *ngIf="vm.restaurantes.length > 0 else notExitsRestaurante">
+        <mat-card class="card" *ngFor="let restaurante of vm.restaurantes">
           <mat-card-content>
 
           <span>
