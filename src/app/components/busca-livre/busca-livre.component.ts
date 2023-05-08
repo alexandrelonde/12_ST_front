@@ -4,16 +4,18 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Restaurante } from 'src/app/Interfaces/Restaurante';
 import { RestaurantesService } from 'src/app/services/restaurantes.service';
+import { BuscaLivreComponentStore } from '../store/busca-livre.component-store';
 
 @Component({
   selector: 'app-busca-livre',
   templateUrl: './busca-livre.component.html',
   styleUrls: ['./busca-livre.component.css'],
+  providers:[BuscaLivreComponentStore]
 })
 export class BuscaLivreComponent implements OnInit {
 
-  restaurantes$: Observable<Restaurante[]> = new Observable<Restaurante[]>();
 
+  vm$ = this.buscaStore.vm$;
 
   searchForm=this.fb.group({
     buscar:['',Validators.required]
@@ -24,10 +26,10 @@ export class BuscaLivreComponent implements OnInit {
     return this.searchForm.controls['buscar'];
   }
 
-  constructor(private fb:FormBuilder,private restauranteService: RestaurantesService,private router:Router) {}
+  constructor(private fb:FormBuilder,private buscaStore:BuscaLivreComponentStore,private router:Router) {}
 
   ngOnInit(): void {
-    this.restaurantes$=this.restauranteService.getRestaurantes();
+      this.buscaStore.getRestaurantes();
   }
 
 
@@ -35,7 +37,7 @@ export class BuscaLivreComponent implements OnInit {
   {
     if(this.searchForm.valid)
     {
-      this.restaurantes$=this.restauranteService.getRestaurantesByTerm(this.buscar.value ?? '');
+      this.buscaStore.getRestaurantesbyTerm(this.buscar.value ?? '');
     }
 
   }

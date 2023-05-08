@@ -1,20 +1,20 @@
 <div class="page-details">
   <div class="content full-width">
-    <ng-container *ngIf="restaurante$ | async; let restaurante">
+    <ng-container *ngIf="vm$ | async; let vm">
       <mat-card class="card">
         <mat-card-content>
           <span>
-            <h1><strong>{{ restaurante.nome }}</strong></h1>
+            <h1><strong>{{ vm.restaurante?.nome }}</strong></h1>
           </span>
 
           <div class="pratos">
             <h2>Pratos</h2>
           </div>
 
-          <ng-container *ngIf="restaurante.pratos && restaurante.pratos.length">
+          <ng-container *ngIf="vm.restaurante?.pratos && vm.restaurante?.pratos?.length">
             <mat-card
               class="mini-card"
-              *ngFor="let prato of restaurante.pratos"
+              *ngFor="let prato of vm.restaurante?.pratos"
             >
               <mat-card-content>
                 <span>
