@@ -15,17 +15,19 @@
         <span>Home</span>
       </a>
 
-
-
       <a mat-list-item routerLink='buscar'>
         <mat-icon>search</mat-icon>
         <span>Buscar</span>
       </a>
 
-      <a mat-list-item routerLink='login'>
+
+      <a *ngIf="isLoggedIn$ | async" mat-list-item (click)="authService.logout()" routerLink=''>
         <mat-icon>logout</mat-icon>
         <span>Logout</span>
       </a>
+
+
+
 
     </mat-nav-list>
 

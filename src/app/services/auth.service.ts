@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { enviroment } from '../../enviroments/environment';
 import { AuthResponse } from '../Interfaces/Auth-response';
 
@@ -10,6 +10,8 @@ import { AuthResponse } from '../Interfaces/Auth-response';
   providedIn: 'root'
 })
 export class AuthService {
+  private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
+  isLoggedIn$ = this._isLoggedIn$.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -21,5 +23,16 @@ export class AuthService {
   setToken(tokenObj: AuthResponse): void {
     const token = tokenObj.access_token;
     localStorage.setItem('token', token);
+    this.setLoggedIn(true);
   }
+
+  setLoggedIn(loggedIn: boolean): void {
+    this._isLoggedIn$.next(loggedIn);
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.setLoggedIn(false);
+  }
+
 }

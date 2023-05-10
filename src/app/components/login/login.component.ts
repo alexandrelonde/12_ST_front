@@ -15,10 +15,6 @@ export class LoginComponent implements  OnInit{
   loginForm: FormGroup; // declaração da propriedade loginForm
   hide = true;
 
-  ngOnInit() {
-
-  }
-
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -29,6 +25,8 @@ export class LoginComponent implements  OnInit{
       password: ['', Validators.required],
     });
   }
+
+  ngOnInit() { }
 
   login(): void {
     const { username, password } = this.loginForm.value;
