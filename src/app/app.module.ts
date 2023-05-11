@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { BuscaLivreComponent } from './components/busca-livre/busca-livre.component';
 import { DetalhesRestauranteComponent } from './components/detalhes-restaurante/detalhes-restaurante.component';
-import { TitleLogoutComponent } from './components/title-logout/title-logout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,7 +27,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     LoginComponent,
     BuscaLivreComponent,
     DetalhesRestauranteComponent,
-    TitleLogoutComponent,
     HomeComponent,
     PageNotFoundComponent,
   ],

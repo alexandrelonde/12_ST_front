@@ -10,7 +10,7 @@ import { AuthResponse } from '../Interfaces/Auth-response';
   providedIn: 'root'
 })
 export class AuthService {
-  private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
+  private _isLoggedIn$ = new BehaviorSubject<boolean>(this.hasToken());
   isLoggedIn$ = this._isLoggedIn$.asObservable();
 
 
@@ -33,6 +33,10 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     this.setLoggedIn(false);
+  }
+
+  private hasToken(): boolean {
+    return !!localStorage.getItem('token');
   }
 
 }
