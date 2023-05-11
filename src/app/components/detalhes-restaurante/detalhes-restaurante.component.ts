@@ -21,9 +21,6 @@ export class DetalhesRestauranteComponent implements OnInit{
     this.detalhesRestauranteComponentStore.getRestaurante(id);
   }
 
-
-
-
   IrpraTeladeBuscar()
   {
     console.log("tes");
