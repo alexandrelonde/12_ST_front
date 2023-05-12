@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { enviroment } from '../../enviroments/environment';
 import { AuthResponse } from '../Interfaces/Auth-response';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { of, from } from 'rxjs';
 
 
 
@@ -16,8 +19,16 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  authenticate(username: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(enviroment.apiUrl+'/usuario/login', { username, password });
+  authenticate(username: string, password: string): Observable<AuthResponse | string> {
+    return this.http.post<AuthResponse>(enviroment.apiUrl+'/usuario/login', { username, password })
+      .pipe(
+        catchError(error => {
+          if (error.status === 401) {
+            return of('Usuário ou senha incorretos.');
+          }
+          return of(error.message);
+        })
+      );
   }
 
   setToken(tokenObj: AuthResponse): void {
