@@ -26,15 +26,24 @@ export class LoginComponent implements  OnInit{
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+   }
 
   login(): void {
     const { username, password } = this.loginForm.value;
     this.authService.authenticate(username, password).subscribe(
-      (response: AuthResponse) => {
-        const token = response.access_token;
-        this.authService.setToken(response);
-        this.router.navigate(['/buscar']);
+      (response: AuthResponse | string) => {
+        if (typeof response === 'string') {
+          alert(response);
+        } else {
+          const token = response.access_token;
+          this.authService.setToken(response);
+          this.router.navigate(['/buscar']);
+        }
+      },
+      (error) => {
+        alert(error);
       }
     );
   }
