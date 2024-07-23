@@ -38,6 +38,15 @@
   margin-bottom: 20px;
 }
 
+.descricao {
+  margin-top: 10px;
+}
+
+.button-details {
+  margin-top: 10px;
+  border: solid 2px blue
+}
+
 @media only screen and (max-width: 600px) {
   .full-width{
     width: 95%;
